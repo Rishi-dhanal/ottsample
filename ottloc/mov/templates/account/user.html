@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Profiles</title>
+    <style>
+        /* Your CSS styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+        .profile-section {
+            margin-bottom: 20px;
+            width: 300px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .profile-section h3 {
+            margin-bottom: 10px;
+        }
+        .profile-button {
+            border: none;
+            background: none;
+            cursor: pointer;
+            position: relative;
+        }
+        .profile-button img {
+            width: 100%;
+            height: auto;
+        }
+        .password-input {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 70%;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            padding: 10px;
+            z-index: 1;
+        }
+        .profile-button:hover .password-input {
+            display: block;
+        }
+        input[type="password"] {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        button {
+            width: 70%;
+            padding: 10px;
+            background-color: #3498db;
+            border: none;
+            color: white;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <div class="profile-section">
+        <h3>Create Adult Profile</h3>
+        <div class="profile-button">
+            <img src="adult_profile_image.png" alt="Create Adult Profile">
+            <div class="password-input">
+                <form method="post" action="#">
+                    {% csrf_token %}
+                    <input type="hidden" name="profile_type" value="ADULT">
+                    <input type="password" name="adult_password" placeholder="Adult Profile Password (4 digits)" maxlength="4" required>
+                    <button type="submit">Create</button>
+                </form>
+            </div>
+        </div>
+        <p>Maximum 4 adult profiles allowed</p>
+    </div>
+    
+    <div class="profile-section">
+        <h3>Create Kid Profile</h3>
+        <div class="profile-button">
+            <img src="kid_profile_image.png" alt="Create Kid Profile">
+            <div class="password-input">
+                <form method="post" action="#">
+                    {% csrf_token %}
+                    <input type="hidden" name="profile_type" value="KID">
+                    <input type="password" name="kid_password" placeholder="Kid Profile Password (4 digits)" maxlength="4" required>
+                    <button type="submit">Create</button>
+                </form>
+            </div>
+        </div>
+        <p>Only 1 kid profile allowed</p>
+    </div>
+
+    <div class="profile-section">
+        <h3>Add Profile (Only for Adults)</h3>
+        <div class="profile-button">
+            <img src="add_profile_image.png" alt="Add Profile">
+            <div class="password-input">
+                <form method="post" action="#">
+                    {% csrf_token %}
+                    <input type="hidden" name="profile_type" value="ADULT">
+                    <input type="password" name="adult_password" placeholder="Adult Profile Password (4 digits)" maxlength="4" required>
+                    <button type="submit">Add</button>
+                </form>
+            </div>
+        </div>
+        <p>Maximum 4 adult profiles allowed</p>
+    </div>
+</body>
+</html>

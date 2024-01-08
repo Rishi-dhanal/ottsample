@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .login-container {
+            background-color: #fff;
+            width: 300px;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        input[type="email"],
+        input[type="password"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        button {
+            width: calc(100% - 22px);
+            padding: 10px;
+            background-color: #3498db;
+            border: none;
+            color: white;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        p {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        a {
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        .login-container {
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2>Login <span class="close-button" onclick="window.location.href='/'">&times;</span></h2>
+        {% if error_message %}
+            <p>{{ error_message }}</p>
+        {% endif %}
+        <form method="post">
+            {% csrf_token %}
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <button type="submit">Login</button>
+        </form>
+        <p>Don't have an account? <a href="{% url 'registration' %}">Register here</a></p>
+    </div>
+</body>
+</html>
